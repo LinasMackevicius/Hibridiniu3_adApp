@@ -1,26 +1,45 @@
-
 import React, { useState, useEffect } from 'react';
-import { Button, View, Text, FlatList, StyleSheet, StatusBar, Pressable } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function SecondScreen({route, navigation}) {
-  <View>
-      <Text> Second screen</Text>
-
-  </View>
+function AddAnAdScreen({ route, navigation }) {
+  // Implement your AddAnAdScreen component here
 }
 
+function MainScrollAddsScreen({ route, navigation }) {
+  const [jsonData, setJsonData] = useState([]);
 
-function HomeScreen({ route, navigation }) {
+  useEffect(() => {
+    // Importing local JSON file using require
+    const data = require('./assets/data.json');
+    setJsonData(data);
+  }, []);
+
+  const renderItem = ({ item }) => (
+    <View style={styles.adStyle}>
+      <Text style={styles.adText}>{item.fruit}</Text>
+      <Text style={styles.adText}>{item.size}</Text>
+      <Text style={styles.adText}>{item.color}</Text>
+    </View>
+  );
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'left'}}>
-
-      <Button
-      title='goto second screen'
-      onPress= {() => {navigation.navigate('Second')}} 
+    <View style={styles.container}>
+      <FlatList
+        data={jsonData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.fruit}
       />
-     
+
+      <Pressable
+        style={styles.menuButton}
+        onPress={() => {
+          navigation.navigate('AddOneAdScreen');
+        }}
+      >
+        <Text style={styles.buttonText}> + </Text>
+      </Pressable>
     </View>
   );
 }
@@ -31,22 +50,44 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        
-        <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        />
-
-        <Stack.Screen
-        name="Second"
-        component= {SecondScreen}
-        />
-
+        <Stack.Screen name="Main" component={MainScrollAddsScreen} />
+        <Stack.Screen name="AddOneAdScreen" component={AddAnAdScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  menuButton: {
+    width: '100%',
+    height: 50,
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  adStyle: {
+    backgroundColor: 'yellow',
+    padding: 20,
+    marginVertical: 10,
+    marginHorizontal: 16,
+    borderColor: 'black',
+    borderWidth: 2,
+    borderRadius: 8,
+  },
+  adText: {
+    fontSize: 18,
+    marginBottom: 8,
+  },
+});
 
 export default App;
