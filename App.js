@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Pressable,  SafeAreaView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function AddAnAdScreen({ route, navigation }) {
-  // Implement your AddAnAdScreen component here
+
+  
+  const [text, onChangeText] = React.useState('Useless Text');
+
+  return(
+    <SafeAreaView>
+    <TextInput
+      style={styles.input}
+      onChangeText={onChangeText}
+      value={text}
+    />
+  </SafeAreaView>
+  );
 }
+
 
 function MainScrollAddsScreen({ route, navigation }) {
   const [jsonData, setJsonData] = useState([]);
@@ -84,9 +97,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
   },
+
   adText: {
     fontSize: 18,
     marginBottom: 8,
+  },
+
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
 
