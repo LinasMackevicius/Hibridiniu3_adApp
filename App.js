@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import React, { useState, useEffect } from 'react';
+import { Button, View, Text, FlatList, StyleSheet, StatusBar, Pressable } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+function SecondScreen({route, navigation}) {
+  <View>
+      <Text> Second screen</Text>
+
+  </View>
+}
+
+
+function HomeScreen({ route, navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'left'}}>
+
+      <Button
+      title='goto second screen'
+      onPress= {() => {navigation.navigate('Second')}} 
+      />
+     
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        
+        <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        />
+
+        <Stack.Screen
+        name="Second"
+        component= {SecondScreen}
+        />
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
+export default App;
