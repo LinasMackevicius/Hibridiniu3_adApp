@@ -1,21 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, Pressable,  SafeAreaView, TextInput } from 'react-native';
+
+import { View, Text, FlatList, StyleSheet, Pressable,  SafeAreaView, TextInput, Button, Alert } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import RNFS from 'react-native-fs';
+
+var filePath = RNFS.DocumentDirectoryPath + './assets/data.json';
 
 function AddAnAdScreen({ route, navigation }) {
 
-  
-  const [text, onChangeText] = React.useState('Useless Text');
+  const fruit = {
+    fruit: "dragon fruit",
+    size: "big",
+    color: "red"
+  };
 
+  const readAndAppendFile = async () => {
+    try {
+      const existingData = await RNFS.readFile(filePath);
+  
+      const existingJson = JSON.parse(existingData);
+  
+      // Append the new data to the existing JSON object
+      existingJson.push(fruit);
+  
+      // Convert the updated data to a JSON string
+      const updatedJsonString = JSON.stringify(existingJson);
+  
+      // Write the updated JSON data back to the file
+      await RNFS.writeFile(filePath, updatedJsonString, 'utf8');
+      
+      // Show an alert indicating that the file has been saved
+      Alert.alert('File saved', null, [{ text: 'OK' }]);
+    } catch (e) {
+      console.log('Error:', e);
+    }
+  };
+
+  const [text, onChangeText] = React.useState('Useless Text');
+  
   return(
     <SafeAreaView>
-    <TextInput
-      style={styles.input}
-      onChangeText={onChangeText}
-      value={text}
-    />
-  </SafeAreaView>
+      <TextInput
+        style={styles.inputBox}
+        onChangeText={onChangeText}
+        value={text}
+      />
+
+      <Button title="Press Me" onPress={readAndAppendFile}/>
+
+    </SafeAreaView>
   );
 }
 
@@ -73,8 +110,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'left',
   },
   menuButton: {
     width: '100%',
@@ -94,8 +130,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 16,
     borderColor: 'black',
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 8,
+    alignContent: 'flex-end'
   },
 
   adText: {
@@ -103,7 +140,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  input: {
+  inputBox: {
     height: 40,
     margin: 12,
     borderWidth: 1,
