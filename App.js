@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import RNFS from 'react-native-fs';
 
 
 function AddAnAdScreen({ route, navigation }) {
@@ -18,45 +17,18 @@ function AddAnAdScreen({ route, navigation }) {
   };
 
   const readAndAppendFile = async () => {
-    try {
-      // Use the correct path separator
-      const filePath = RNFS.DocumentDirectoryPath + '/assets/data.json';
 
-      // Check if the file exists
-      const fileExists = await RNFS.exists(filePath);
+    const fs = require('fs');
+    
+    const myJsonString = JSON.stringify(fruit);
 
-      if (!fileExists) {
-        // If the file doesn't exist, create it with initial data
-        const initialData = [fruit];
-        const initialJsonString = JSON.stringify(initialData);
-        await RNFS.writeFile(filePath, initialJsonString, 'utf8');
-
-        // Show an alert indicating that the file has been created
-        Alert.alert('File created', null, [{ text: 'OK' }]);
-        return;
+    fs.appendFile('./assets/data.json', myJsonString, err => {
+      if (err) {
+        console.error(err);
       }
-
-      // Read the existing data from the file
-      const existingData = await RNFS.readFile(filePath);
-
-      // Parse the existing JSON data
-      const existingJson = JSON.parse(existingData);
-
-      // Append the new data to the existing JSON object
-      existingJson.push(fruit);
-
-      // Convert the updated data to a JSON string
-      const updatedJsonString = JSON.stringify(existingJson);
-
-      // Write the updated JSON data back to the file using react-native-fs
-      await RNFS.writeFile(filePath, updatedJsonString, 'utf8');
-
-      // Show an alert indicating that the file has been saved
-      Alert.alert('File saved', null, [{ text: 'OK' }]);
-    } catch (e) {
-      console.log('Error:', e);
-    }
-  };
+    });
+  }
+  
 
 
   const [text, onChangeText] = React.useState('Useless Text');
