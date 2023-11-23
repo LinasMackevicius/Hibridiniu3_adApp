@@ -7,8 +7,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-
 function AddAnAdScreen({ route, navigation }) {
+
+  const fs = require('fs').promises;
+  const path = require('path');
 
   const fruit = {
     fruit: "dragon fruit",
@@ -17,16 +19,6 @@ function AddAnAdScreen({ route, navigation }) {
   };
 
   const readAndAppendFile = async () => {
-
-    const fs = require('fs');
-    
-    const myJsonString = JSON.stringify(fruit);
-
-    fs.appendFile('./assets/data.json', myJsonString, err => {
-      if (err) {
-        console.error(err);
-      }
-    });
   }
   
 
