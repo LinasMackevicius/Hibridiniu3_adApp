@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AdvertsAppEx3",
-    "slug": "AdvertsAppEx3",
+    "name": "AdApplication",
+    "slug": "AdApplication",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
