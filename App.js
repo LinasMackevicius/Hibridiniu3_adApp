@@ -1,18 +1,19 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { TransitionPresets } from '@react-navigation/stack'; 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { TransitionPresets } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
 import AddAdScreen from './AddAdScreen';
-import UpdateAdScreen from './UpdateAdScreen';
+import UpdateAdScreen from './UpdatedAdScreen';
 import adReducer from './redux/reducer';
+
 
 // Redux
 const store = createStore(adReducer);
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (

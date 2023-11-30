@@ -5,6 +5,7 @@ import { commonStyles } from './styles';
 import { addAd } from './redux/actions';
 
 const AddAdScreen = ({ navigation }) => {
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
@@ -29,8 +30,9 @@ const AddAdScreen = ({ navigation }) => {
 
   return (
     <View style={commonStyles.centeredContainer}>
-      <Text style={commonStyles.bigTitle}>Add Ad Screen</Text>
+      <Text style={commonStyles.bigTitle}> Fill title and description of your add: </Text>
       <View style={commonStyles.verticalSpace}></View>
+      
       <TextInput
         style={commonStyles.input}
         placeholder="Title"
@@ -41,21 +43,24 @@ const AddAdScreen = ({ navigation }) => {
         }}
       />
       <View style={commonStyles.verticalSpace}></View>
+      
       <TextInput
         style={commonStyles.input}
         placeholder="Description"
         value={description}
         onChangeText={(text) => setDescription(text)}
       />
+      
       {error ? (
         <Text style={{ color: 'red', marginTop: 5 }}>{error}</Text>
       ) : null}
       <View style={commonStyles.verticalSpace}></View>
+      
       <TouchableOpacity
         onPress={handleAddAd}
-        style={commonStyles.smallButton}
+        style={commonStyles.addButtonOnAddScreen}
       >
-        <Text style={commonStyles.smallButtonText}>Add Ad</Text>
+        <Text style={commonStyles.addButtonOnAddScreenText}>ADD</Text>
       </TouchableOpacity>
       <View style={commonStyles.verticalSpace}></View>
     </View>

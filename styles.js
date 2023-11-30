@@ -2,46 +2,92 @@ import { StyleSheet } from 'react-native';
 
 export const commonStyles = StyleSheet.create({
     bigTitle: {
-      fontSize: 20,
+      fontSize: 25,
       fontWeight: 'bold',
       marginBottom: 10,
     },
     adTitle: {
-      fontSize: 18,  
+      fontSize: 20,  
       fontWeight: 'bold',
       marginBottom: 5,
     },
+
     smallButton: {
-      fontSize: 12,  
+      fontSize: 20,  
       backgroundColor: 'black',
-      marginBottom: 10,
-      width: 160,
-      alignItems: 'center'
+      marginBottom: 15,
+      width: 100,
+      alignContent: 'center',
+      borderRadius: 8,
     },
+
     smallButtonText: {
-        fontSize: 32,
+        fontSize: 15,
         color: 'white',  
-        alignItems: 'center'
+        alignSelf: 'center',
+        fontWeight: 'bold'
       },
       adDescription: {
-        fontSize: 16,
+        fontSize: 15,
         marginBottom: 20,
     
     },
     centeredContainer: {
-        flex: 1,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
       },
       verticalSpace: {
         marginVertical: 5,
       },
+      
       input: {
-        fontSize: 32, 
-        height: 80,   
-        borderColor: 'gray',
-        borderWidth: 1,
+        fontSize: 28, 
+        height: 60,
+        width: 200,   
+        borderColor: 'black',
+        borderWidth: 4,
         borderRadius: 10,
         paddingHorizontal: 10,
       },
+
+      adContainer: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderBlockColor: 'black',
+        borderWidth: 3,
+      },
+
+      addbutton: {
+        height: 60,
+        width: 100,
+        backgroundColor: 'black',
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        borderRadius: 10,
+      },
+
+      addButtonOnAddScreen: {
+        height: 60,
+        width: 100,
+        backgroundColor: 'black',
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        borderRadius: 10,
+      },
+
+      addButtonOnAddScreenText: {
+        fontSize: 20,
+        color: 'white',  
+        alignSelf: 'center',
+        fontWeight: 'bold'
+
+
+      }
+
+
   });
