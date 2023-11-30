@@ -13,6 +13,7 @@ const AddAdScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleAddAd = () => {
+    
     if (!title.trim()) {
       setError('Please fill the title of the ad');
       return;
@@ -25,6 +26,7 @@ const AddAdScreen = ({ navigation }) => {
     };
 
     dispatch(addAd(newAd));
+
     navigation.navigate('Home');
   };
 

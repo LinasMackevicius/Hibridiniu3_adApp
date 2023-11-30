@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
   const handleDeleteAd = (adId) => {
     dispatch(deleteAd(adId));
   };
-  
+
   return (
     <View style={{ flex: 0.99 }}>
       <ScrollView
@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }) => {
                 onPress={() => handleUpdateAd(ad.id)}
                 style={commonStyles.smallButton}
               >
-                <Text style={commonStyles.smallButtonText}>Update</Text>
+                <Text style={commonStyles.smallButtonText}>Edit</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => handleDeleteAd(ad.id)}
